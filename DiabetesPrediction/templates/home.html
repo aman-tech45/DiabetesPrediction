@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url("{% static 'img1.png' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            animation: fadeIn 2s forwards;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 0;
+            color: #379683; /* Dark green color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #379683; /* Dark green color */
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #05386B; /* Dark blue color */
+            border: none;
+            color: #fff;
+            padding: 16px 32px;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"]:hover {
+            background-color: #379683; /* Dark green color */
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 1em;
+        }
+
+        a {
+            color: #05386B; /* Dark blue color */
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #379683; /* Dark green color */
+        }
+
+        .diabetes-img {
+            width: 150px;
+            animation: floatAnimation 5s infinite ease-in-out;
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="diabetes-img" src="{% static 'DiabetesPrediction/images/diabetes.icon.png' %}" alt="Diabetes Icon">
+        <h1>Welcome To Diabetes Prediction System Using ML</h1>
+        <form action="predict">
+            <input type="submit" value="Let's Get Started">
+        </form>
+        <p>Check out our <a href="{% url 'guide' %}">Diabetes Guide</a>.</p>
+    </div>
+</body>
+</html>

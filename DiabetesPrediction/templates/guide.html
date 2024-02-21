@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Management Guide</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px; /* Added padding to prevent breaking from top and bottom */
+            background: linear-gradient(135deg, #4ecdc4, #009688);
+            background-size: cover;
+            animation: gradientBG 15s infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header, footer {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 40px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Styles */
+        section {
+            position: relative;
+            max-width: 800px;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transform: translateY(0);
+            opacity: 1;
+            margin-bottom: 40px;
+            animation: floating 5s infinite alternate ease-in-out;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Heading Styles */
+        h1, h2 {
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+        }
+
+        /* Paragraph and List Styles */
+        p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Tip and Warning Styles */
+        .tip, .warning {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .shape {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 2px solid;
+            animation: pulseAnimation 1s infinite ease-in-out, rotateAnimation 10s infinite linear;
+        }
+
+        .tip .shape {
+            border-color: #28a745;
+            top: 5px;
+            left: 5px;
+        }
+
+        .warning .shape {
+            border-color: #dc3545;
+            bottom: 5px;
+            right: 5px;
+        }
+
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotateAnimation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            color: #333;
+            animation: fadeIn 2s forwards;
+        }
+
+        /* Corner Decorations */
+        .corner-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            top: -50px;
+            z-index: -1;
+            animation: floating 8s infinite alternate ease-in-out;
+        }
+
+        .corner-left {
+            left: -50px;
+        }
+
+        .corner-right {
+            right: -50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative corners -->
+    <div class="corner-decoration corner-left"></div>
+    <div class="corner-decoration corner-right"></div>
+
+    <header>
+        <h1>Diabetes Management Guide</h1>
+        <p><strong>Empowering you with knowledge for a healthier life</strong></p>
+    </header>
+
+    <section>
+        <h2><span style="color: #009688;">Introduction</span></h2>
+        <p>Welcome to our comprehensive guide for managing diabetes. Below, you'll find valuable insights and practical tips to help you lead a <strong>healthier lifestyle</strong>.</p>
+    </section>
+
+    <section>
+        <h2><span style="color: #009688;">Healthy Eating</span></h2>
+        <p>Proper nutrition is crucial for managing diabetes. Here are some dietary recommendations:</p>
+        <ul>
+            <li>Focus on a balanced diet rich in <strong>fruits, vegetables, and whole grains</strong>.</li>
+            <li>Avoid <strong>processed foods</strong> and <strong>sugary beverages</strong>.</li>
+            <li>Monitor portion sizes to regulate blood sugar levels.</li>
+        </ul>
+        <div class="tip">
+            <div class="shape"></div>
+            <p><strong>Tip:</strong> Incorporate colorful fruits and vegetables into your meals for added nutrients.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2><span style="color: #009688;">Physical Activity</span></h2>
+        <p>Regular exercise is essential for diabetes management. Consider the following recommendations:</p>
+        <ul>
+            <li>Engage in at least <strong>150 minutes of moderate-intensity aerobic activity per week</strong>.</li>
+            <li>Include <strong>strength training exercises</strong> at least twice a week.</li>
+            <li>Consult with your healthcare provider before starting any new exercise regimen.</li>
+        </ul>
+        <div class="tip">
+            <div class="shape"></div>
+            <p><strong>Tip:</strong> Stay hydrated by <strong>drinking water throughout the day</strong>, especially during physical activity.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2><span style="color: #009688;">Monitoring Blood Sugar</span></h2>
+        <p>Regular monitoring of blood sugar levels is essential for effective diabetes management. Here's what you need to know:</p>
+        <ul>
+            <li>Use a <strong>glucose meter</strong> as recommended by your healthcare provider.</li>
+            <li>Record your blood sugar readings and share them with your healthcare team.</li>
+        </ul>
+        <div class="warning">
+            <div class="shape"></div>
+            <p><strong>Warning:</strong> Avoid <strong>tobacco use</strong> and <strong>limit alcohol consumption</strong> for overall health.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>For personalized guidance, consult with your healthcare provider. This guide is not a substitute for professional medical advice.</strong></p>
+    </footer>
+</body>
+</html>

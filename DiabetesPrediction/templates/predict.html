@@ -1,0 +1,244 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'DiabetesPrediction/images/img9.png' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .main {
+            width: 400px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #0086b3;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        table tr {
+            margin-bottom: 10px;
+        }
+
+        table td {
+            text-align: right;
+            padding-right: 10px;
+            font-weight: bold;
+            color: #fff; /* Dark label text color */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            color: #333; /* Input text color */
+        }
+
+        input[type="submit"] {
+            background-color: #4dc3ff;
+            border: none;
+            color: #fff;
+            padding: 12px 24px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3680b3;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc; /* Lighter text color for additional information */
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        a {
+            color: #4dc3ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>Please enter the following information:</h1>
+        <form action="result" onsubmit="return validateForm()">
+            <table>
+                <tr>
+                    <td>Pregnancies (0-20):</td>
+                    <td><input type="text" name="n1" id="pregnancies" pattern="[0-9]{1,2}" title="Enter a number between 0 and 20"></td>
+                    <span id="pregnanciesError" class="error-message"></span>
+                </tr>
+                <tr>
+                    <td>Glucose (50-250):</td>
+                    <td><input type="text" name="n2" id="glucose" title="Enter a number between 50 and 250"></td>
+                    <span id="glucoseError" class="error-message"></span>
+                </tr>
+                <tr>
+                    <td>Blood Pressure (0-150):</td>
+                    <td><input type="text" name="n3" id="bloodPressure" title="Enter a number between 0 and 150"></td>
+                    <span id="bloodPressureError" class="error-message"></span>
+                </tr>
+                <tr>
+                    <td>Skin Thickness (0-100):</td>
+                    <td><input type="text" name="n4" id="skinThickness" title="Enter a number between 0 and 100"></td>
+                    <span id="skinThicknessError" class="error-message"></span>
+                </tr>
+                <tr>
+                    <td>Insulin (0-500):</td>
+                    <td><input type="text" name="n5" id="insulin" title="Enter a number between 0 and 500"></td>
+                    <span id="insulinError" class="error-message"></span>
+                </tr>
+                <tr>
+                    <td>BMI (0-100):</td>
+                    <td><input type="text" name="n6" id="bmi" title="Enter a number between 0 and 100"></td>
+                    <span id="bmiError" class="error-message"></span>
+                </tr>
+                <tr>
+                    <td>Diabetes Pedigree Function (0-2):</td>
+                    <td><input type="text" name="n7" id="diabetesPedigree" title="Enter a number between 0 and 2"></td>
+                    <span id="diabetesPedigreeError" class="error-message"></span>
+                </tr>
+                <tr>
+                    <td>Age (10-100):</td>
+                    <td><input type="text" name="n8" id="age" title="Enter a number between 10 and 100"></td>
+                    <span id="ageError" class="error-message"></span>
+                </tr>
+            </table>
+            <input type="submit" value="Get Prediction">
+        </form>
+        <p>Result: {{result2}}</p>
+        <p>Check out our <a href="{% url 'guide' %}">Diabetes Guide</a>.</p>
+    </div>
+
+    <script>
+        // Validate form function
+        function validateForm() {
+            var isValid = true;
+
+            // Validation for Pregnancies
+            var pregnancies = document.getElementById("pregnancies").value;
+            var pregnanciesError = document.getElementById("pregnanciesError");
+            if (pregnancies < 0 || pregnancies > 20) {
+                pregnanciesError.innerHTML = "Enter a number between 0 and 20.";
+                isValid = false;
+            } else {
+                pregnanciesError.innerHTML = "";
+            }
+
+            // Validation for Glucose
+            var glucose = document.getElementById("glucose").value;
+            var glucoseError = document.getElementById("glucoseError");
+            if (!/^(50(\.\d+)?|[1-9]\d*(\.\d+)?|100)$/.test(glucose)) {
+                glucoseError.innerHTML = "Enter a number between 50 and 100.";
+                isValid = false;
+            } else {
+                glucoseError.innerHTML = "";
+            }
+
+            // Validation for Blood Pressure
+            var bloodPressure = document.getElementById("bloodPressure").value;
+            var bloodPressureError = document.getElementById("bloodPressureError");
+            if (bloodPressure < 0 || bloodPressure > 150) {
+                bloodPressureError.innerHTML = "Enter a number between 0 and 150.";
+                isValid = false;
+            } else {
+                bloodPressureError.innerHTML = "";
+            }
+
+            // Validation for Skin Thickness
+            var skinThickness = document.getElementById("skinThickness").value;
+            var skinThicknessError = document.getElementById("skinThicknessError");
+            if (skinThickness < 0 || skinThickness > 100) {
+                skinThicknessError.innerHTML = "Enter a number between 0 and 100.";
+                isValid = false;
+            } else {
+                skinThicknessError.innerHTML = "";
+            }
+
+            // Validation for Insulin
+            var insulin = document.getElementById("insulin").value;
+            var insulinError = document.getElementById("insulinError");
+            if (insulin < 0 || insulin > 500) {
+                insulinError.innerHTML = "Enter a number between 0 and 500.";
+                isValid = false;
+            } else {
+                insulinError.innerHTML = "";
+            }
+
+            // Validation for BMI
+            var bmi = document.getElementById("bmi").value;
+            var bmiError = document.getElementById("bmiError");
+            if (!/^(0(\.\d+)?|[1-9]\d*(\.\d+)?|100)$/.test(bmi)) {
+                bmiError.innerHTML = "Enter a number between 0 and 100.";
+                isValid = false;
+            } else {
+                bmiError.innerHTML = "";
+            }
+
+            // Validation for Diabetes Pedigree Function
+            var diabetesPedigree = document.getElementById("diabetesPedigree").value;
+            var diabetesPedigreeError = document.getElementById("diabetesPedigreeError");
+            if (!/^\d+(\.\d+)?$|^0(\.\d+)?$|^2(\.0+)?$/.test(diabetesPedigree)) {
+                diabetesPedigreeError.innerHTML = "Enter a number between 0 and 2.";
+                isValid = false;
+            } else {
+                diabetesPedigreeError.innerHTML = "";
+            }
+
+            // Validation for Age
+            var age = document.getElementById("age").value;
+            var ageError = document.getElementById("ageError");
+            if (age < 10 || age > 100) {
+                ageError.innerHTML = "Enter a number between 10 and 100.";
+                isValid = false;
+            } else {
+                ageError.innerHTML = "";
+            }
+
+            return isValid;
+        };
+    </script>
+</body>
+</html>
